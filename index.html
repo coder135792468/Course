@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head> 
-    
+    <head>    
     <style>
-    *{
+      *{
     margin:0;
     padding:0;
 }
@@ -363,9 +362,8 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
 #blank{
 text-align:center;display:none;position:absolute;top:50vh;width:100%;
 }
-    
-        
-    </style>   
+  
+    </style>
     <div id="load">
     <div id="loader">
                 <svg id="svg" class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -423,7 +421,7 @@ text-align:center;display:none;position:absolute;top:50vh;width:100%;
       
      <p id="blank"><b>No Content Found</b></p> 
       
-       <span class="slctLesson fa fa-book"></span>
+       <button class="slctLesson"><span class="fa fa-book"></span></button>
       
         <div class="course-stuffs">
          <h2 class="unit-heading"></h2>   
@@ -908,7 +906,7 @@ let hard_course=[
 </script>
 
 <script>
-var eC= [];
+   var eC= [];
 
 
 const swal=(txt)=>{
@@ -1205,8 +1203,7 @@ clas("quizz-stuffs")[0].style.display ="block";
 }    
 
 const quizzPage=()=>{
-
-
+ans="";
 if(courseType=="b"){
  totalQuizzes =beginner_course[lessonNo].quizzes.length;
 
@@ -1572,7 +1569,7 @@ else{
 }
 
 
-    
+ 
 </script>
      </body>
 </html>
