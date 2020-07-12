@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>    
+    <head> 
     <style>
       *{
     margin:0;
@@ -363,7 +363,7 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
 text-align:center;display:none;position:absolute;top:50vh;width:100%;
 }
   
-    </style>
+    </style>   
     <div id="load">
     <div id="loader">
                 <svg id="svg" class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -906,8 +906,7 @@ let hard_course=[
 </script>
 
 <script>
-   var eC= [];
-
+  var eC= [];
 
 const swal=(txt)=>{
 var id = document.getElementById("toast_msg");
@@ -1109,10 +1108,6 @@ clas("fa-sign-in")[0].onclick=show_login_page;
 //coursePage();
 }
 var courseType="";
-
-
-
-
 var pageNo =0;
 var totalPages =0;
 var quizNo=0;
@@ -1120,6 +1115,7 @@ var totalQuiz=0;
 var lessonNo=0;
 var ans="";
 const coursePage=(i)=>{
+clas("slctLesson")[0].style.visibility="hidden";
 clas("course-level")[0].style.display="none";
 blank.style.display="none";
 clas("course-stuffs")[0].style.display="block";  
@@ -1128,6 +1124,9 @@ clas("user")[0].classList.remove("fa-user");
 clas("user")[0].classList.add("fa-arrow-left");
 clas("user")[0].classList.remove("fa-user-plus");
 clas("fa-arrow-left")[0].onclick=()=>{
+if(isAdmin){
+clas("slctLesson")[0].style.visibility="visible";
+}
 backToLesson();
 };
 showCourse(i);
@@ -1569,7 +1568,7 @@ else{
 }
 
 
- 
+  
 </script>
      </body>
 </html>
