@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head> 
+    
     <style>
-       *{
+    *{
     margin:0;
     padding:0;
 }
@@ -14,6 +15,24 @@ body {
     max-height:100vh;
     max-width:100vw;
     overflow:hidden;
+}
+
+#toast_msg {
+    background-color:#222;;
+    color:lightgray;
+    padding:10px;
+    text-align: center;
+    width:50%;
+    float: middle;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 999999999999999;    
+    top:80%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0px 3px 3px rgba(0,0,0,0.2);
+    display:none;
+    
 }
 .header{
     width:100%;
@@ -332,7 +351,20 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
 .lab{
    display:none; 
 }
- 
+
+.slctLesson{
+   position:fixed;width:50px;height:50px;
+   border-radius:50%;bottom:20px;right:20px;
+   background:lightgreen;display:flex;
+   justify-content:center;align-items:center;
+   z-index:30;visibility:hidden;
+}
+
+#blank{
+text-align:center;display:none;position:absolute;top:50vh;width:100%;
+}
+    
+        
     </style>   
     <div id="load">
     <div id="loader">
@@ -369,6 +401,18 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
         <title>Page Title</title>
     </head>
     <body>
+    
+<div id="toast_msg">
+            Hello
+        </div>
+        
+<audio id="win_song">
+    <source src="https://raw.githubusercontent.com/EdwardDunn/Platform-Game/master/Audio/win_sound.wav"></source>
+</audio>    
+<audio id="lose_song">
+    <source src="https://raw.githubusercontent.com/EdwardDunn/Platform-Game/master/Audio/gameover.wav"></source>
+</audio>    
+    
        <div class="con">         
       <div class="header">     
       <span class="user fa fa-user"></span>        
@@ -376,6 +420,10 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
       <span onclick="show_all_students()" style="display:none;" class="sign fa fa-users"></span>        
       </div>   
           <div class="main">
+      
+     <p id="blank"><b>No Content Found</b></p> 
+      
+       <span class="slctLesson fa fa-book"></span>
       
         <div class="course-stuffs">
          <h2 class="unit-heading"></h2>   
@@ -421,8 +469,8 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
           </div>
           
           <div class="login-form">
-            <input class="email" type="text" placeholder="Enter Your Email.." value="abc@gm.com"/> 
-            <input class="password" type="text" placeholder="Enter Your Password.." value="Abcdef"/>
+            <input class="email" type="text" placeholder="Enter Your Email.." value="k@k.com"/> 
+            <input class="password" type="text" placeholder="Enter Your Password.." value="123456"/>
             <button onclick="login_admin()" class="loginAd">Login <i class="fa fa-user"></i></button>
             <button onclick="login_student()" class="loginStd">Login <i class="fa fa-users"></i></button>
           </div>
@@ -445,12 +493,10 @@ margin-right:15px;box-shadow:0 2px 2px rgba(0,0,0,0.2);font-weight:bold;
 let beginner_course=[
 {
   title:"ABCD",
-  totalPage:2,
-  totalQuiz:2,
   page:[
   {
     title:"ABCDEFGHIJKLMN",
-    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    theory:`Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow`,
     example:`document.write('hello')`,
     bonus:`sbsks sks sk sis sis sjs`,
  }, 
@@ -459,7 +505,20 @@ let beginner_course=[
     theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
     example:`document.write('hello')`,
     bonus:`bdbs sks zjsj sis eis eis sks is w`,
- },       
+ }, 
+ {
+    title:"ABCDEFGHIJKLMN",
+    theory:`Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow`,
+    example:`document.write('hello')`,
+    bonus:`sbsks sks sk sis sis sjs`,
+ }, 
+ {
+    title:"GHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,
+    bonus:`bdbs sks zjsj sis eis eis sks is w`,
+ },
+       
   ],
   quizzes:[
    {
@@ -488,8 +547,6 @@ let beginner_course=[
 },
 {
   title:"ABCD",
-  totalPage:2,
-  totalQuiz:2,
   page:[
   {
     title:"ABCDEFGHIJKLMN",
@@ -530,8 +587,131 @@ let beginner_course=[
 },
 {
   title:"ABCD",
-  totalPage:2,
-  totalQuiz:2,
+  page:[
+  {
+    title:"ABCDEFGHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,
+    bonus:`nsksks`,
+ },
+ {
+    title:"ABCDEFGHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,    
+    bonus:`j`,
+ },         
+  ],
+  quizzes:[
+  {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Yk"},
+   {opt2:"Y"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+  {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   }, 
+  ],
+  
+},
+
+];
+
+let medium_course=[
+{
+  title:"ABCD",
+  page:[
+  {
+    title:"ABCDEFGHIJKLMN medium",
+    theory:`Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow`,
+    example:`document.write('hello')`,
+    bonus:`sbsks sks sk sis sis sjs`,
+ }, 
+ {
+    title:"GHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,
+    bonus:`bdbs sks zjsj sis eis eis sks is w`,
+ },       
+  ],
+  quizzes:[
+   {
+   question:"what is your Name? medium",
+   answer:"Coder",
+   options:[
+   {opt1:"Yk"},
+   {opt2:"Y"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+   
+   {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+  ],
+  
+},
+{
+  title:"ABCD",
+  page:[
+  {
+    title:"ABCDEFGHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,    
+    bonus:`j`,
+ },  
+  {
+    title:"ABCDEFGHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,    
+    bonus:`l`,
+ },      
+  ],
+  quizzes:[
+    {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Yk"},
+   {opt2:"Y"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+   
+   {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+  ],
+},
+{
+  title:"ABCD",
   page:[
   {
     title:"ABCDEFGHIJKLMN",
@@ -575,19 +755,67 @@ let beginner_course=[
 
 
 
-
-let medium_course=[
+let hard_course=[
 {
   title:"ABCD",
   page:[
   {
-    title:"ABCDEFGHIJKLMN",
+    title:"ABCDEFGHIJKLMN Hard",
+    theory:`Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow`,
+    example:`document.write('hello')`,
+    bonus:`sbsks sks sk sis sis sjs`,
+ }, 
+ {
+    title:"GHIJKLMN",
     theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
     example:`document.write('hello')`,
-    bonus:``,
+    bonus:`bdbs sks zjsj sis eis eis sks is w`,
  },       
   ],
   quizzes:[
+   {
+   question:"what is your Name? hard",
+   answer:"Coder",
+   options:[
+   {opt1:"Yk"},
+   {opt2:"Y"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+   
+   {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+   
+    {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+   
+    {    
+   question:"what is your Name? end hard",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
    
   ],
   
@@ -598,12 +826,38 @@ let medium_course=[
   {
     title:"ABCDEFGHIJKLMN",
     theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
-    example:`document.write('hello')`,
-    bonus:``,
- },       
+    example:`document.write('hello')`,    
+    bonus:`j`,
+ },  
+  {
+    title:"ABCDEFGHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,    
+    bonus:`l`,
+ },      
   ],
   quizzes:[
+    {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Yk"},
+   {opt2:"Y"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
    
+   {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
   ],
 },
 {
@@ -613,71 +867,60 @@ let medium_course=[
     title:"ABCDEFGHIJKLMN",
     theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
     example:`document.write('hello')`,
-    bonus:``,
- },       
+    bonus:`nsksks`,
+ },
+ {
+    title:"ABCDEFGHIJKLMN",
+    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
+    example:`document.write('hello')`,    
+    bonus:`j`,
+ },         
   ],
   quizzes:[
-   
+  {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Yk"},
+   {opt2:"Y"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   },
+  {
+   question:"what is your Name?",
+   answer:"Coder",
+   options:[
+   {opt1:"Y"},
+   {opt2:"Yk"},
+   {opt3:"Y"},
+   {opt4:"Coder"},
+   ]
+   }, 
   ],
   
 },
 
 ];
 
-let advance_course=[
-{
-  title:"ABCD",
-  page:[
-  {
-    title:"ABCDEFGHIJKLMN",
-    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
-    example:`document.write('hello')`,
-    bonus:``,
- },       
-  ],
-  quizzes:[
-   
-  ],
-  
-},
-{
-  title:"ABCD",
-  page:[
-  {
-    title:"ABCDEFGHIJKLMN",
-    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
-    example:`document.write('hello')`,
-    bonus:``,
- },       
-  ],
-  quizzes:[
-   
-  ],
-},
-{
-  title:"ABCD",
-  page:[
-  {
-    title:"ABCDEFGHIJKLMN",
-    theory:"Djsjs dis sisw wlwps soq soxlw spw pdogw x ala sosbwps sow",
-    example:`document.write('hello')`,
-    bonus:``,
- },       
-  ],
-  quizzes:[
-   
-  ],
-  
-},
-
-];
 
     
 </script>
 
 <script>
-var win_song = new Audio("https://raw.githubusercontent.com/EdwardDunn/Platform-Game/master/Audio/win_sound.wav");
-var  lose_song = new Audio("https://raw.githubusercontent.com/EdwardDunn/Platform-Game/master/Audio/gameover.wav"); 
+var eC= [];
+
+
+const swal=(txt)=>{
+var id = document.getElementById("toast_msg");
+id.innerHTML = txt;
+id.style.display = "block";
+setTimeout(()=>{
+id.style.display = "none";
+},2000);
+
+}
+
 //Access to Class
 const clas=(_)=>document.getElementsByClassName(_);
 //Show Login Page
@@ -732,12 +975,15 @@ firebase.database().ref("/admin/").set({
   firebase.auth().signInWithEmailAndPassword(email, password).then(()=>{
  // console.log(uid());  
   id = uid();
+  
+  /*
 firebase.database().ref("/admin/").set({
       email:email,
       password:password,
       isAdmin:true,
       id:uid(),
 });
+*/
  clas("email")[0].value="";
  clas("password")[0].value="";
  show_home_page();   
@@ -780,17 +1026,18 @@ var isAdmin = false;
 const show_home_page=()=>{
 clas("sign")[0].style.display="none";
 firebase.database().ref("/admin/").once("value",data=>{
-if(data.val()["id"]==id)isAdmin=true;    
+if(data.val()["id"]==id){
+isAdmin=true; 
+}else{
+isAdmin=false;
+}   
 }).then(()=>{
 clas("logo-page")[0].style.opacity="0";
 if(isAdmin){
 clas("user")[0].classList.remove("fa-user");
 clas("user")[0].classList.add("fa-user-plus");   
 clas("sign")[0].style.display="none";
-
 clas("fa-users")[0].style.display="inline-block";
-
-
 clas("fa-user-plus")[0].onclick=function(){
  clas("form-cover")[0].style.visibility="visible";
  clas("cr_room")[0].style.left="50%";    
@@ -799,6 +1046,7 @@ clas("fa-user-plus")[0].onclick=function(){
 clas("course-level")[0].style.display = "block";
 
 }else{
+
 clas("course-level")[0].style.display = "block";
 clas("user")[0].classList.add("fa-user");
 clas("user")[0].classList.remove("fa-user-plus");
@@ -816,7 +1064,7 @@ show_loader();
  clas("cr_room")[0].style.left="-50%";
 
 firebase.auth().createUserWithEmailAndPassword(email, password).then(()=>{
-  console.log(uid());  
+  //console.log(uid());  
 firebase.database().ref("/students/"+uid()).set({
       email:email,
       password:password,
@@ -824,6 +1072,7 @@ firebase.database().ref("/students/"+uid()).set({
       id:uid()
 });
 close_create_user_page();
+swal("Done!!");
 hide_loader();    
  }).catch((err) =>{
   alert(err.message);
@@ -852,6 +1101,7 @@ window.onload = ()=>{
 clas("fa-sign-in")[0].onclick=show_login_page;
 
 
+
 //clas("logo-page")[0].style.visibility="hidden"; 
 //show_home_page();
 
@@ -860,37 +1110,11 @@ clas("fa-sign-in")[0].onclick=show_login_page;
 //clas("quizz-stuffs")[0].style.display="none";
 //coursePage();
 }
-const show_beginner_level_course=()=>{
-
-clas("course-level")[0].style.display="none";
-clas("course")[0].innerHTML="";
-for(let i in beginner_course){
- clas("course")[0].innerHTML+=`
- <div class="lesson">
-  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
-<span style="margin-left:15px;" >${beginner_course[i].title}</span>
- <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
- </div>
- `;
- if(isAdmin){
-     clas("lab")[i].style.display="inline-block";
- }else{
-    clas("lab")[i].style.display="none";  
- }
- 
- 
- 
-}
-
-}
+var courseType="";
 
 
-const show_medium_level_course=()=>{
-    
-}
-const show_advance_level_course=()=>{
-    
-}
+
+
 var pageNo =0;
 var totalPages =0;
 var quizNo=0;
@@ -899,13 +1123,14 @@ var lessonNo=0;
 var ans="";
 const coursePage=(i)=>{
 clas("course-level")[0].style.display="none";
+blank.style.display="none";
 clas("course-stuffs")[0].style.display="block";  
 clas("course")[0].style.display="none";
 clas("user")[0].classList.remove("fa-user");
 clas("user")[0].classList.add("fa-arrow-left");
 clas("user")[0].classList.remove("fa-user-plus");
 clas("fa-arrow-left")[0].onclick=()=>{
-backToLesson()
+backToLesson();
 };
 showCourse(i);
 
@@ -919,7 +1144,29 @@ showCourse(i);
 const showCourse=(i)=>{
 lessonNo=i;
 //console.log(pageNo);
-totalPages = beginner_course[i].totalPage;
+if(courseType=="b"){
+totalPages = beginner_course[i].page.length;
+var unit_heading=beginner_course[i].page[pageNo].title.split("<").join("&lt");
+var theory=beginner_course[i].page[pageNo].theory.split("<").join("&lt");
+var code =beginner_course[i].page[pageNo].example.split("<").join("&lt");
+var bonus=beginner_course[i].page[pageNo].bonus.split("<").join("&lt");
+}
+else if(courseType=="m"){
+totalPages = medium_course[i].page.length;
+var unit_heading=medium_course[i].page[pageNo].title.split("<").join("&lt");
+var theory=medium_course[i].page[pageNo].theory.split("<").join("&lt");
+var code =medium_course[i].page[pageNo].example.split("<").join("&lt");
+var bonus=medium_course[i].page[pageNo].bonus.split("<").join("&lt");    
+}else{
+    
+totalPages = hard_course[i].page.length;
+var unit_heading=hard_course[i].page[pageNo].title.split("<").join("&lt");
+var theory=hard_course[i].page[pageNo].theory.split("<").join("&lt");
+var code =hard_course[i].page[pageNo].example.split("<").join("&lt");
+var bonus=hard_course[i].page[pageNo].bonus.split("<").join("&lt");    
+    
+}
+
 clas("course-stuffs")[0].style.display="block";
 /*
  clas("unit-heading")[0].innerHTML=`
@@ -931,12 +1178,14 @@ clas("bonus-info")[0].innerText=``;
 */
 clas("course-stuffs")[0].innerHTML="";
 clas("course-stuffs")[0].innerHTML+=`
- <h2 class="unit-heading">${beginner_course[i].page[pageNo].title.split("<").join("&lt")}</h2>   
-         <div class="theory">${beginner_course[i].page[pageNo].theory.split("<").join("&lt")}</div>
+ <h2 class="unit-heading">${unit_heading}</h2>   
+         <div class="theory">${theory}</div>
         <div class="example"><code class="code">
-        ${beginner_course[i].page[pageNo].example.split("<").join("&lt")}
+        ${code}
         </code></div>
-         <div class="bonus"><span class="fa fa-info-circle" style="font-size:14px;"></span><span class="bonus-info">${beginner_course[i].page[pageNo].bonus.split("<").join("&lt")}</span></div>
+         <div class="bonus"><span class="fa fa-info-circle" style="font-size:14px;"></span><span class="bonus-info">
+         ${bonus}
+         </span></div>
          
 <button onclick="nextPage(${i})" class="continue">Continue</button>
 `;
@@ -956,40 +1205,90 @@ clas("quizz-stuffs")[0].style.display ="block";
 }    
 
 const quizzPage=()=>{
- totalQuizzes =beginner_course[lessonNo].totalQuiz;
+
+
+if(courseType=="b"){
+ totalQuizzes =beginner_course[lessonNo].quizzes.length;
+
+if(quizNo<totalQuizzes){}else{
+   backToLesson();
+} 
+
+var quizHeader=beginner_course[lessonNo].quizzes[quizNo].question;
+var option1=beginner_course[lessonNo].quizzes[quizNo].options[0].opt1;
+var option2=beginner_course[lessonNo].quizzes[quizNo].options[1].opt2;
+var option3=beginner_course[lessonNo].quizzes[quizNo].options[2].opt3;
+var option4=beginner_course[lessonNo].quizzes[quizNo].options[3].opt4;
  
+ }
+ else if(courseType=="m"){
+ totalQuizzes =medium_course[lessonNo].quizzes.length;
+
 if(quizNo<totalQuizzes){}else{
    backToLesson();
 } 
  
+var quizHeader=medium_course[lessonNo].quizzes[quizNo].question;
+console.log(quizHeader);
+var option1=medium_course[lessonNo].quizzes[quizNo].options[0].opt1;
+var option2=medium_course[lessonNo].quizzes[quizNo].options[1].opt2;
+var option3=medium_course[lessonNo].quizzes[quizNo].options[2].opt3;
+var option4=medium_course[lessonNo].quizzes[quizNo].options[3].opt4; 
+ 
+ }else{
+ totalQuizzes =hard_course[lessonNo].quizzes.length;
+
+if(quizNo<totalQuizzes){}else{
+   backToLesson();
+} 
+ 
+var quizHeader=hard_course[lessonNo].quizzes[quizNo].question;
+var option1=hard_course[lessonNo].quizzes[quizNo].options[0].opt1;
+var option2=hard_course[lessonNo].quizzes[quizNo].options[1].opt2;
+var option3=hard_course[lessonNo].quizzes[quizNo].options[2].opt3;
+var option4=hard_course[lessonNo].quizzes[quizNo].options[3].opt4; 
+  
+ }
+
  
 clas("quizz-stuffs")[0].innerHTML="";
 clas("quizz-stuffs")[0].innerHTML+=`
-<h3 class="quizz-header">${beginner_course[lessonNo].quizzes[quizNo].question}</h3> 
-<div onclick="slcAns(this)" class="opt1 opt">${beginner_course[lessonNo].quizzes[quizNo].options[0].opt1}</div>  
-<div onclick="slcAns(this)" class="opt2 opt">${beginner_course[lessonNo].quizzes[quizNo].options[1].opt2}</div> 
-<div onclick="slcAns(this)" class="opt3 opt">${beginner_course[lessonNo].quizzes[quizNo].options[2].opt3}</div>
-<div onclick="slcAns(this)" class="opt4 opt">${beginner_course[lessonNo].quizzes[quizNo].options[3].opt4}</div>
+<h3 class="quizz-header">${quizHeader}</h3> 
+<div onclick="slcAns(this)" class="opt1 opt">${option1}</div>  
+<div onclick="slcAns(this)" class="opt2 opt">${option2}</div> 
+<div onclick="slcAns(this)" class="opt3 opt">${option3}</div>
+<div onclick="slcAns(this)" class="opt4 opt">${option4}</div>
 <button class="check" onclick="checkAns()">Check</button>
 `; 
 }
 const checkAns=()=>{       
-//console.log(ans);    
-if(ans==beginner_course[lessonNo].quizzes[quizNo].answer){
+//console.log(ans);
+if(courseType=="b"){
+ var correctAns=beginner_course[lessonNo].quizzes[quizNo].answer;
+ }
+ else if(courseType=="m"){
+ var correctAns=medium_course[lessonNo].quizzes[quizNo].answer;
+  
+ }else{
+  var correctAns=hard_course[lessonNo].quizzes[quizNo].answer; 
+ }
+    
+if(ans==correctAns){
         win_song.play();
+        swal("Congratulation!!");
+       setTimeout(()=>{
         quizNo++;
         quizzPage();
+        },400);
       }else{
-        alert("wrong"); 
+        swal("Try Again!!");
         lose_song.play();
       }
                
      
 }
 
-const slcAns=(e)=>{
-ans = e.innerText;
-};
+const slcAns=(e)=>ans = e.innerText;
 
 const backToLesson=()=>{
 clas("course-level")[0].style.display="none";
@@ -1013,7 +1312,267 @@ clas("quizz-stuffs")[0].style.display="none";
  totalQuiz=0;
  lessonNo=0;
  ans=""; 
-}    
+}
+
+const setLessons=(arr)=>{
+    firebase.database().ref("/admin-course/"+courseType).set(arr).then(()=>{
+        hide_loader();
+        swal("Done!!");
+
+    }).catch(e=>{
+      alert("There is some Problem"); 
+    });
+}
+
+
+
+
+
+const show_beginner_level_course=()=>{
+clas("course-level")[0].style.display="none";
+courseType="b";
+clas("course")[0].innerHTML="";
+if(isAdmin){
+var a = beginner_course; 
+clas("slctLesson")[0].style.visibility="visible";
+clas("slctLesson")[0].onclick=()=>{
+var arr=[];
+let lsn= clas("choose-lesson");
+for(let i in lsn){
+    if(lsn[i].checked){       
+       arr.push(i);       
+    }    
+}   
+   show_loader();
+   setLessons(arr);
+for(let i in lsn){
+    lsn[i].checked=false;
+}
+}
+
+for(let i in a){
+ clas("course")[0].innerHTML+=`
+ <div class="lesson">
+  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
+<span style="margin-left:15px;" >${beginner_course[i].title}</span>
+ <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
+ </div>
+ `;
+ if(isAdmin){
+     clas("lab")[i].style.display="inline-block";
+ }else{
+    clas("lab")[i].style.display="none";  
+ }
+ 
+ 
+ 
+}
+
+
+}
+else{ 
+show_loader();
+firebase.database().ref("/admin-course/"+courseType).once("value",m=>{
+   hide_loader();
+ if(m.val()){
+   let k=Object.keys(m.val());
+   for(let i in k){
+       eC.push(parseInt(m.val()[k[i]]));
+   }
+   
+  for(let i in eC){
+ clas("course")[0].innerHTML+=`
+ <div class="lesson">
+  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
+<span style="margin-left:15px;" >${beginner_course[i].title}</span>
+ <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
+ </div>
+ `;
+ if(isAdmin){
+     clas("lab")[i].style.display="inline-block";
+ }else{
+    clas("lab")[i].style.display="none";  
+ }
+ 
+ 
+ 
+}
+  
+}
+else{
+    blank.style.display="block";
+}   
+});   
+}
+}
+
+
+
+
+const show_medium_level_course=()=>{
+clas("course-level")[0].style.display="none";
+courseType="m";
+clas("course")[0].innerHTML="";
+if(isAdmin){
+var a = medium_course; 
+clas("slctLesson")[0].style.visibility="visible";
+clas("slctLesson")[0].onclick=()=>{
+var arr=[];
+let lsn= clas("choose-lesson");
+for(let i in lsn){
+    if(lsn[i].checked){       
+       arr.push(i);       
+    }    
+}   
+   show_loader();
+   setLessons(arr);
+for(let i in lsn){
+    lsn[i].checked=false;
+}
+}
+
+for(let i in a){
+ clas("course")[0].innerHTML+=`
+ <div class="lesson">
+  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
+<span style="margin-left:15px;" >${beginner_course[i].title}</span>
+ <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
+ </div>
+ `;
+ if(isAdmin){
+     clas("lab")[i].style.display="inline-block";
+ }else{
+    clas("lab")[i].style.display="none";  
+ }
+ 
+ 
+ 
+}
+
+
+}
+else{ 
+show_loader();
+firebase.database().ref("/admin-course/"+courseType).once("value",m=>{
+   hide_loader();
+ if(m.val()){
+   let k=Object.keys(m.val());
+   for(let i in k){
+       eC.push(parseInt(m.val()[k[i]]));
+   }
+   
+  for(let i in eC){
+ clas("course")[0].innerHTML+=`
+ <div class="lesson">
+  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
+<span style="margin-left:15px;" >${beginner_course[i].title}</span>
+ <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
+ </div>
+ `;
+ if(isAdmin){
+     clas("lab")[i].style.display="inline-block";
+ }else{
+    clas("lab")[i].style.display="none";  
+ }
+ 
+ 
+ 
+}
+  
+}
+else{
+    blank.style.display="block";
+}   
+});   
+}
+    
+}
+
+
+
+
+
+const show_advance_level_course=()=>{
+clas("course-level")[0].style.display="none";
+courseType="a";
+clas("course")[0].innerHTML="";
+if(isAdmin){
+var a = hard_course; 
+clas("slctLesson")[0].style.visibility="visible";
+clas("slctLesson")[0].onclick=()=>{
+var arr=[];
+let lsn= clas("choose-lesson");
+for(let i in lsn){
+    if(lsn[i].checked){       
+       arr.push(i);       
+    }    
+}   
+   show_loader();
+   setLessons(arr);
+for(let i in lsn){
+    lsn[i].checked=false;
+}
+}
+
+for(let i in a){
+ clas("course")[0].innerHTML+=`
+ <div class="lesson">
+  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
+<span style="margin-left:15px;" >${beginner_course[i].title}</span>
+ <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
+ </div>
+ `;
+ if(isAdmin){
+     clas("lab")[i].style.display="inline-block";
+ }else{
+    clas("lab")[i].style.display="none";  
+ }
+ 
+ 
+ 
+}
+
+
+}
+else{ 
+show_loader();
+firebase.database().ref("/admin-course/"+courseType).once("value",m=>{
+   hide_loader();
+ if(m.val()){
+   let k=Object.keys(m.val());
+   for(let i in k){
+       eC.push(parseInt(m.val()[k[i]]));
+   }
+   
+  for(let i in eC){
+ clas("course")[0].innerHTML+=`
+ <div class="lesson">
+  <label class="lab"><input class="choose-lesson" style="opacity:0;" type="checkbox"/><span style="margin-right:15px;" class="fa fa-check selected-lesson"></span></label>
+<span style="margin-left:15px;" >${beginner_course[i].title}</span>
+ <span class="goToLesson fa fa-arrow-right" onclick="coursePage(${i})"></span>
+ </div>
+ `;
+ if(isAdmin){
+     clas("lab")[i].style.display="inline-block";
+ }else{
+    clas("lab")[i].style.display="none";  
+ }
+ 
+ 
+ 
+}
+  
+}
+else{
+    blank.style.display="block";
+}   
+});   
+}
+
+}
+
+
+    
 </script>
      </body>
 </html>
